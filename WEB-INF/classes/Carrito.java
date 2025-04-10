@@ -21,7 +21,7 @@ public class Carrito {
             this.cds.put(titulo, cantidad);
         }
 
-        System.out.printf("%s %d", titulo, this.cds.get(titulo));
+        System.out.printf("%s %d\n", titulo, this.cds.get(titulo));
     }
     
 }

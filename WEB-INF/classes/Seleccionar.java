@@ -7,9 +7,13 @@ public class Seleccionar extends HttpServlet{
         
         response.setContentType("text/html");
 
+        //Hay que meter codigo de sesion
+
         Carrito carrito= new Carrito();
         carrito.anadirCD(request.getParameter("titulo"),
             Integer.parseInt(request.getParameter("cantidad")));
+
+        //Hay que meter codigo de siguiente pagina
     }
 
 }
