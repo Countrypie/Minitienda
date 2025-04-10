@@ -1,7 +1,7 @@
 <web-app>
     <servlet>
         <servlet-name>seleccionar</servlet-name>
-        <servlet-class>Seleccionar.java</servlet-class>
+        <servlet-class>Seleccionar</servlet-class>
     </servlet>
 
     <servlet-mapping>
