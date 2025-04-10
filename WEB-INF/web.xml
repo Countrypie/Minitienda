@@ -1,0 +1,11 @@
+<web-app>
+    <servlet>
+        <servlet-name>seleccionar</servlet-name>
+        <servlet-class>Seleccionar.java</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>seleccionar</servlet-name>
+        <url-pattern>/seleccionar</url-pattern>
+    </servlet-mapping>
+</web-app>
