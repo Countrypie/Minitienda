@@ -9,6 +9,21 @@
         <url-pattern>/seleccionar</url-pattern>
     </servlet-mapping>
 
+    <servlet-mapping>
+        <servlet-name>volver</servlet-name>
+        <url-pattern>/volver</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>irapagar</servlet-name>
+        <url-pattern>/irapagar</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>pagar</servlet-name>
+        <url-pattern>/pagar</url-pattern>
+    </servlet-mapping>
+
     <session-config>
         <session-timeout>15</session-timeout>
     </session-config>
