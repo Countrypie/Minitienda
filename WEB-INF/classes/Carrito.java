@@ -68,8 +68,9 @@ public class Carrito {
     private void imprimirTodo(){
         System.out.println("Contenido");
         for(String cd : cds.keySet()){
-            System.out.printf("\t%s, %d\n",cd,cds.get(cd));
+            System.out.printf("\t%s, %d, %f\n",cd,cds.get(cd),this.getImporte(cd));
         }
+        System.out.printf("Importe: %f\n",this.getImporteTotal());
     }
     
 }

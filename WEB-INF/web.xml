@@ -4,24 +4,40 @@
         <servlet-class>Seleccionar</servlet-class>
     </servlet>
 
+    <servlet>
+        <servlet-name>visualizar</servlet-name>
+        <servlet-class>Visualizar</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>finalizar</servlet-name>
+        <servlet-class>Finalizar</servlet-class>
+    </servlet>
+
+
     <servlet-mapping>
         <servlet-name>seleccionar</servlet-name>
         <url-pattern>/seleccionar</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
-        <servlet-name>volver</servlet-name>
+        <servlet-name>visualizar</servlet-name>
         <url-pattern>/volver</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
-        <servlet-name>irapagar</servlet-name>
-        <url-pattern>/irapagar</url-pattern>
+        <servlet-name>visualizar</servlet-name>
+        <url-pattern>/pagar</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
-        <servlet-name>pagar</servlet-name>
-        <url-pattern>/pagar</url-pattern>
+        <servlet-name>visualizar</servlet-name>
+        <url-pattern>/eliminar</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>finalizar</servlet-name>
+        <url-pattern>/finalizar</url-pattern>
     </servlet-mapping>
 
     <session-config>

@@ -1,1 +1,1 @@
-javac --class-path servlet-api.jar Carrito.java Seleccionar.java
+javac --class-path servlet-api.jar Carrito.java Seleccionar.java Visualizar.java Finalizar.java
