@@ -23,5 +23,12 @@ public class Carrito {
 
         System.out.printf("%s %d\n", titulo, this.cds.get(titulo));
     }
+
+    private void imptimirTodo(){
+        System.out.println("Contenido");
+        for(String cd : cds.keySet()){
+            System.out.printf("\t%s, %d\n",cd,cds.get(cd));
+        }
+    }
     
 }
