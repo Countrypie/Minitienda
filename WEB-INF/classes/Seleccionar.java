@@ -31,6 +31,14 @@ public class Seleccionar extends HttpServlet{
             "<head>" +
             "<title>Carrito de la compra</title>" +
             "<meta charset=\"UTF-8\">" +
+            "<style>" +
+                "input[type=image]{" +
+                "  border: 2px solid transparent;" +
+                "}" +
+                "input[type=image]:hover {" +
+                "  border: 2px solid purple;" +
+                "}" +
+            "</style>" +
             "</head>" +
             "<body bgcolor=\"#FDF5E6\">" +
             "<h1 align=\"center\">Carrito de la compra</h1>" +
@@ -50,7 +58,8 @@ public class Seleccionar extends HttpServlet{
                 "<tr>" +
                     "<td>" + cd + "</td>" +
                     "<td align=\"center\">" + cantidad + "</td>" +
-                    "<td align=\"right\">"  + importe + "</td>" +
+                    "<td align=\"right\">"  + String.format("%.2f", importe) +
+                    "</td>" +
                     "<td align=\"center\">" +
                     "<input type=\"radio\" name=\"seleccion\" value=\"" + cd + "\">" +
                     "</td>" +
@@ -60,7 +69,7 @@ public class Seleccionar extends HttpServlet{
         out.println(
                 "<tr>" +
                     "<td colspan=\"2\" align=\"right\"><b>IMPORTE TOTAL</b></td>" +
-                    "<td align=\"right\">" + carrito.getImporteTotal() + "</td>" +
+                    "<td align=\"right\">" + String.format("%.2f", carrito.getImporteTotal()) + "</td>" +
                     "<td><input type=\"submit\" value=\"Eliminar\"></td>" +
                 "</tr>" +
                 "</table>" +

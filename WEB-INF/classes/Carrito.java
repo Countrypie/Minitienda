@@ -39,9 +39,9 @@ public class Carrito {
         precioString = precioString.replace('$',' ').trim();
 
         float precio=Float.parseFloat(precioString);
-        float cantidad=this.cds.get(cd);
+        int cantidad=this.cds.get(cd);
 
-        return ((int)(precio*cantidad*100))/100f;
+        return precio*cantidad;
     }
 
     //Devuelve el importe total
@@ -57,11 +57,16 @@ public class Carrito {
             precioString = precioString.replace('$',' ').trim();
 
             float precio=Float.parseFloat(precioString);
-            float cantidad=this.cds.get(cd);
+            int cantidad=this.cds.get(cd);
             importe+=precio*cantidad;
         }
 
-        return ((int)(importe*100))/100f;
+        return importe;
+    }
+
+    //Elimina el cd indicado
+    public void eliminaCd(String titulo){
+        this.cds.remove(titulo);
     }
 
     //Metodo privado para debuguear

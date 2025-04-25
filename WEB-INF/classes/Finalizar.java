@@ -9,17 +9,10 @@ public class Finalizar extends HttpServlet{
 
         //Se obtienen la sesion y el carrito
         HttpSession sesion=request.getSession();
-        Carrito carrito=null;
-
-        if(sesion.isNew()){
-            carrito= new Carrito();
-            sesion.setAttribute("Carrito",carrito);
-        }else{
-            carrito=(Carrito)sesion.getAttribute("Carrito");
-        }
 
         //Logica de eliminar la sesion
-        
+        sesion.invalidate();
+
         //Volver a pagina principal
         PrintWriter out=response.getWriter();
         out.println("<html>" +
