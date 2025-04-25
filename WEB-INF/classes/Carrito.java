@@ -41,7 +41,7 @@ public class Carrito {
         float precio=Float.parseFloat(precioString);
         float cantidad=this.cds.get(cd);
 
-        return precio*cantidad;
+        return ((int)(precio*cantidad*100))/100f;
     }
 
     //Devuelve el importe total
@@ -61,7 +61,7 @@ public class Carrito {
             importe+=precio*cantidad;
         }
 
-        return importe;
+        return ((int)(importe*100))/100f;
     }
 
     //Metodo privado para debuguear

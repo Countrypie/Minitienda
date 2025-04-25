@@ -34,8 +34,8 @@ public class Seleccionar extends HttpServlet{
             "</head>" +
             "<body bgcolor=\"#FDF5E6\">" +
             "<h1 align=\"center\">Carrito de la compra</h1>" +
-            "<form action=\"eliminar\" method=\"post\">" +
-                "<table align=\"center\" border=\"1\" background-color=\"white\">" +
+            "<form action=\"eliminar\">" +
+                "<table align=\"center\" border=\"1\" bgcolor=\"white\">" +
                 "<tr>" +
                     "<th>TITULO DEL CD</th>" +
                     "<th>Cantidad</th>" +
@@ -68,13 +68,12 @@ public class Seleccionar extends HttpServlet{
             "<hr>" +
             "<table align=\"center\" border=\"0\">" +
             "<tr>"+
-                "<td>"+"<a href=\"catalogo\">" +
-                "<img src=\"./Imagenes/carrito.png\" alt=\"Sigo comprando\" width=\"200px\"><br>" +
+                "<td>"+"<form action=\"volver\">" +
+                "<input type=\"image\" src=\"./Imagenes/carrito.png\" alt=\"Sigo comprando\" width=\"200px\"><br>" +
                 "Sigo comprando" + "</td>" +
-                "</a>" + "<td>"+
-                "&nbsp;&nbsp;" +
-                "<a href=\"pagar\">" +
-                "<img src=\"./Imagenes/caja.png\" alt=\"Me largo a pagar\" width=\"200px\"><br>" +
+                "</form>" + "<td>"+
+                "<form action=\"pagar\">" +
+                "<input type=\"image\" src=\"./Imagenes/caja.png\" alt=\"Me largo a pagar\" width=\"200px\"><br>" +
                 "Me largo a pagar" +
                 "</a>" + "</td>" +
             "</tr>" +
