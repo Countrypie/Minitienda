@@ -25,7 +25,7 @@ public class Carrito {
 
     //Devuelve la estructura con todos los cds
     public HashMap<String, Integer> getCds(){
-        return this.getCds();
+        return this.cds;
     }
 
     //Devuelve el importe asociado a un cd

@@ -1,4 +1,6 @@
 import java.io.*;
+import java.util.Map;
+
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 
@@ -23,47 +25,60 @@ public class Seleccionar extends HttpServlet{
             Integer.parseInt(request.getParameter("cantidad")));
 
         //Se devuelve la pagina de visualizacion del carrito
-        //!!Ahora solo devuelve la pagina original
         PrintWriter out=response.getWriter();
-        out.println("<html>" +
+        out.println(
+            "<html>" +
             "<head>" +
-            "<title>Musica para DAA</title>" +
+            "<title>Carrito de la compra</title>" +
             "<meta charset=\"UTF-8\">" +
             "</head>" +
             "<body bgcolor=\"#FDF5E6\">" +
+            "<h1 align=\"center\">Carrito de la compra</h1>" +
+            "<form action=\"eliminar\" method=\"post\">" +
+                "<table align=\"center\" border=\"1\" background-color=\"white\">" +
+                "<tr>" +
+                    "<th>TITULO DEL CD</th>" +
+                    "<th>Cantidad</th>" +
+                    "<th>Importe</th>" +
+                    "<th>Eliminar</th>" +
+                "</tr>"
+        );
+        for (String cd : carrito.getCds().keySet()) {
+            int cantidad = carrito.getCds().get(cd);
+            double importe = carrito.getImporte(cd);
+            out.println(
+                "<tr>" +
+                    "<td>" + cd + "</td>" +
+                    "<td align=\"center\">" + cantidad + "</td>" +
+                    "<td align=\"right\">"  + importe + "</td>" +
+                    "<td align=\"center\">" +
+                    "<input type=\"radio\" name=\"seleccion\" value=\"" + cd + "\">" +
+                    "</td>" +
+                "</tr>"
+            );
+        }
+        out.println(
+                "<tr>" +
+                    "<td colspan=\"2\" align=\"right\"><b>IMPORTE TOTAL</b></td>" +
+                    "<td align=\"right\">" + carrito.getImporteTotal() + "</td>" +
+                    "<td><input type=\"submit\" value=\"Eliminar\"></td>" +
+                "</tr>" +
+                "</table>" +
+            "</form>" +
+            "<hr>" +
             "<table align=\"center\" border=\"0\">" +
-            "<tr>" +
-            "<th><IMG SRC=\"\" ALIGN=\"CENTER\"></th>" +
-            "<th><font face=\"Times New Roman,Times\" size=\"+3\">Música para DAA</font></th>" +
-            "<th><IMG SRC=\"\" ALIGN=\"CENTER\"></th>" +
+            "<tr>"+
+                "<td>"+"<a href=\"catalogo\">" +
+                "<img src=\"./Imagenes/carrito.png\" alt=\"Sigo comprando\" width=\"200px\"><br>" +
+                "Sigo comprando" + "</td>" +
+                "</a>" + "<td>"+
+                "&nbsp;&nbsp;" +
+                "<a href=\"pagar\">" +
+                "<img src=\"./Imagenes/caja.png\" alt=\"Me largo a pagar\" width=\"200px\"><br>" +
+                "Me largo a pagar" +
+                "</a>" + "</td>" +
             "</tr>" +
             "</table>" +
-            "<hr>" +
-            "<p>" +
-            "<center>" +
-            "<form action=\"seleccionar\">" +
-            "<b>CD:</b>" +
-            "<select name=\"titulo\">" +
-            "<option>Yuan | The Guo Brothers | China | $14.95</option>" +
-            "<option>Drums of Passion | Babatunde Olatunji | Nigeria | $16.95</option>" +
-            "<option>Kaira | Tounami Diabate| Mali | $16.95</option>" +
-            "<option>The Lion is Loose | Eliades Ochoa | Cuba | $13.95</option>" +
-            "<option>Dance the Devil Away | Outback | Australia | $14.95</option>" +
-            "<option>Record of Changes | Samulnori | Korea | $12.95</option>" +
-            "<option>Djelika | Tounami Diabate | Mali | $14.95</option>" +
-            "<option>Rapture | Nusrat Fateh Ali Khan | Pakistan | $12.95</option>" +
-            "<option>Cesaria Evora | Cesaria Evora | Cape Verde | $16.95</option>" +
-            "<option>DAA | GSTIC | Spain | $50.00</option>" +
-            "</select>" +
-            "<b>Cantidad:</b>" +
-            "<input type=\"text\" name=\"cantidad\" value=\"1\">" +
-            "<p>" +
-            "<center>" +
-            "<input type=\"submit\" value=\"Selecciona Producto\">" +
-            "</center>" +
-            "</form>" +
-            "</center>" +
-            "<hr>" +
             "</body>" +
             "</html>"
         );

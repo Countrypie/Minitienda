@@ -30,9 +30,9 @@ public class Finalizar extends HttpServlet{
             "<body bgcolor=\"#FDF5E6\">" +
             "<table align=\"center\" border=\"0\">" +
             "<tr>" +
-            "<th><IMG SRC=\"\" ALIGN=\"CENTER\"></th>" +
+            "<th><IMG SRC=\"./Imagenes/partitura.png\" ALIGN=\"CENTER\" width=\"200px\"></th>" +
             "<th><font face=\"Times New Roman,Times\" size=\"+3\">Música para DAA</font></th>" +
-            "<th><IMG SRC=\"\" ALIGN=\"CENTER\"></th>" +
+            "<th><IMG SRC=\"./Imagenes/partitura.png\" ALIGN=\"CENTER\" width=\"200px\"></th>" +
             "</tr>" +
             "</table>" +
             "<hr>" +
