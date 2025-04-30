@@ -69,6 +69,11 @@ public class Carrito {
         this.cds.remove(titulo);
     }
 
+    //Vacia al carrito
+    public void vaciar(){
+        this.cds.clear();
+    }
+
     //Metodo privado para debuguear
     private void imprimirTodo(){
         System.out.println("Contenido");

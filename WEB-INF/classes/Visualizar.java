@@ -9,13 +9,11 @@ public class Visualizar extends HttpServlet{
 
         //Se obtienen la sesion y el carrito
         HttpSession sesion=request.getSession();
-        Carrito carrito=null;
+        Carrito carrito=(Carrito)sesion.getAttribute("Carrito");
 
-        if(sesion.isNew()){
+        if(carrito==null){
             carrito= new Carrito();
             sesion.setAttribute("Carrito",carrito);
-        }else{
-            carrito=(Carrito)sesion.getAttribute("Carrito");
         }
 
         //Se ejecuta una de las tres acciones posibles
@@ -188,12 +186,17 @@ public class Visualizar extends HttpServlet{
             "<tr>"+
                 "<td>"+"<form action=\"volver\">" +
                 "<input type=\"image\" src=\"./Imagenes/carrito.png\" alt=\"Sigo comprando\" width=\"200px\"><br>" +
-                "Sigo comprando" + "</td>" +
                 "</form>" + "<td>"+
                 "<form action=\"pagar\">" +
                 "<input type=\"image\" src=\"./Imagenes/caja.png\" alt=\"Me largo a pagar\" width=\"200px\"><br>" +
+                "</td>" +
+            "</tr>" +
+            "<tr>"+
+                "<td>"+
+                "Sigo comprando" +
+                "<td>"+
                 "Me largo a pagar" +
-                "</a>" + "</td>" +
+                "</td>" +
             "</tr>" +
             "</table>" +
             "</body>" +

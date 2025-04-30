@@ -10,7 +10,7 @@ public class Finalizar extends HttpServlet{
         //Se obtienen la sesion y el carrito
         HttpSession sesion=request.getSession();
 
-        //Logica de eliminar la sesion
+        //Logica de vaciar el carrito
         sesion.invalidate();
 
         //Volver a pagina principal
