@@ -1,9 +1,7 @@
-<%@ page language="java" import="jakarta.servlet.*, jakarta.servlet.http.*, carrito.*" %>
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
-<%
-    HttpSession sesion = request.getSession();
-    Carrito carrito = (Carrito) sesion.getAttribute("Carrito");
-%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
+<jsp:useBean id="carrito" class="carrito.CarritoBean" scope="session"/>
 <html>
     <head>
         <title>Caja</title>
@@ -22,7 +20,9 @@
         <form action="finalizar">
             <table align="center" border="1" bgcolor="white">
                 <tr><th>TOTAL A PAGAR</th></tr>
-                <tr><td align="center"><%= String.format("%.2f", carrito.getImporteTotal()) %></td></tr>
+                <tr><td align="center">
+                    <fmt:formatNumber value="${carrito.importe}" type="number" maxFractionDigits="2" />
+                </td></tr>
             </table>
             <hr>
             <div align="center">

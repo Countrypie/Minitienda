@@ -12,17 +12,27 @@ public class Seleccionar extends HttpServlet{
 
         //Se obtienen la sesion y el carrito
         HttpSession sesion=request.getSession();
-        Carrito carrito=(Carrito)sesion.getAttribute("Carrito");
+        CarritoBean carrito=(CarritoBean)sesion.getAttribute("carrito");
 
         if(carrito==null){
-            carrito= new Carrito();
-            sesion.setAttribute("Carrito",carrito);
+            carrito= new CarritoBean();
+            sesion.setAttribute("carrito",carrito);
         }
         
         //Se anade el cd al carrito
-        carrito.anadirCD(request.getParameter("titulo"),
-            Integer.parseInt(request.getParameter("cantidad")));
+        String descripcion=request.getParameter("titulo");
+        Integer cantidad=Integer.parseInt(request.getParameter("cantidad"));
 
+        if(cantidad>0){
+            if(carrito.getCds().containsKey(descripcion)){
+                Cd cd=carrito.getCds().get(descripcion);
+                cd.setCantidad(cd.getCantidad()+cantidad);
+            }else{
+                Cd cd = new Cd(descripcion, cantidad);
+                carrito.getCds().put(cd.getDescripcion(), cd);
+            }
+        }
+        
         //Se devuelve la pagina de visualizacion del carrito
         RequestDispatcher rd=request.getRequestDispatcher("visualizacion.jsp");
         rd.forward(request,response);

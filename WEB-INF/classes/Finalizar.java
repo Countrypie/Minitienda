@@ -12,9 +12,17 @@ public class Finalizar extends HttpServlet{
 
         //Se obtienen la sesion y el carrito
         HttpSession sesion=request.getSession();
+        CarritoBean carrito=(CarritoBean)sesion.getAttribute("carrito");
 
-        //Logica de vaciar el carrito
-        sesion.invalidate();
+        if(carrito==null){
+            carrito= new CarritoBean();
+            sesion.setAttribute("carrito",carrito);
+
+        }else{
+            //Logica de vaciar el carrito
+            carrito.getCds().clear();;
+
+        }
 
         //Volver a pagina principal
         RequestDispatcher rd=request.getRequestDispatcher("index.html");
