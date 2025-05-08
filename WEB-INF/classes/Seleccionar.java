@@ -23,10 +23,13 @@ public class Seleccionar extends HttpServlet{
         String descripcion=request.getParameter("titulo");
         Integer cantidad=Integer.parseInt(request.getParameter("cantidad"));
 
+        //La cantidad debe ser positiva
         if(cantidad>0){
+            //Si ya estaba se incrementa
             if(carrito.getCds().containsKey(descripcion)){
                 Cd cd=carrito.getCds().get(descripcion);
                 cd.setCantidad(cd.getCantidad()+cantidad);
+            //Si es nuevo se anade
             }else{
                 Cd cd = new Cd(descripcion, cantidad);
                 carrito.getCds().put(cd.getDescripcion(), cd);
