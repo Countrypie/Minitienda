@@ -42,6 +42,7 @@ public class Visualizar extends HttpServlet{
 
                 //Si inicio sesion, va al fin. Si no, imprime error
                 if(validado){
+                    AyudanteBase.crearPedido(request);
                     Dispatcher.dispatch(request,response, "fin.jsp");
                 }else{
                     escribirError(request, "Nombre o contraseña incorrectos.");
@@ -54,7 +55,7 @@ public class Visualizar extends HttpServlet{
                 Dispatcher.dispatch(request,response, "crearUsuario.jsp");
                 break;
 
-            //Accion para pagar con un usuario recien creado
+            //Accion para pagar con un usuario recien creado, y va a la ultima pestaña
             case "/crearYPagar":
                 int estado=AyudanteBase.crearUsuario(request.getParameter("correo"),
                     request.getParameter("contrasena"), request.getParameter("tipo"), 
@@ -62,6 +63,7 @@ public class Visualizar extends HttpServlet{
 
                 //Si se creo correctamente, va al fin. Si no, imprime error 
                 if(estado==0){
+                    AyudanteBase.crearPedido(request);
                     Dispatcher.dispatch(request,response, "fin.jsp");
                 }else{
                     escribirError(request, "No se ha podido crear al usuario.");

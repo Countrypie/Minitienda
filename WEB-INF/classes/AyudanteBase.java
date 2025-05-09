@@ -40,4 +40,24 @@ public class AyudanteBase {
 
         return retorno;
     }
+
+    //Metodo para crear un nuevo pedido
+    public static void crearPedido(HttpServletRequest request){
+
+        CarritoBean carrito=AyudanteCarrito.obtenerCarrito(request);
+        carrito.setPropietario(request.getParameter("correo"));
+        System.out.println(request.getParameter("correo"));
+        System.out.println(carrito.getImporte());
+        
+        int id=-1;
+        try{
+            ConexionBD conexion = new ConexionBD();
+            id=conexion.getDAOPedidos().insertarPedido(carrito.getPropietario(), carrito.getImporte());
+            conexion.getConecion().close();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+        carrito.setPedido(id);
+    }
 }

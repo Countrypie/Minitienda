@@ -1,9 +1,6 @@
 package baseDatos;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.math.BigDecimal;
+import java.sql.*;
 
 public class DAOPedidos {
     private Connection conexion;
@@ -12,17 +9,23 @@ public class DAOPedidos {
         this.conexion = conexion;
     }
 
-    //Metodo para anadir un pedido nuevo. Devuelve 0 si exito
-    public int insertarPedido(String correo, BigDecimal importeTotal) {
+    //Metodo para anadir un pedido nuevo. Devuelve el id del pedido
+    public int insertarPedido(String correo, Float importeTotal) {
         String sql = "INSERT INTO pedidos (correo, importe_total) VALUES (?, ?)";
-        try (PreparedStatement stmt = conexion.prepareStatement(sql)) {
+        try (PreparedStatement stmt = conexion.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             stmt.setString(1, correo);
-            stmt.setBigDecimal(2, importeTotal);
+            stmt.setFloat(2, importeTotal);
             stmt.executeUpdate();
-        }catch(SQLException e){
-            return 1;
+    
+            ResultSet rs = stmt.getGeneratedKeys();
+            if (rs.next()) {
+                return rs.getInt(1);
+            } else {
+                return -1;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return -1;
         }
-        
-        return 0;
     }
 }

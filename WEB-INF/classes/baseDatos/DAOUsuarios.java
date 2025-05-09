@@ -38,7 +38,6 @@ public class DAOUsuarios {
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
                     String contrasena_base=rs.getString("contrasena");
-                    System.out.printf("%s,%s\n",contrasena_base,contrasena);
                     return contrasena_base.equals(contrasena);
                 } else {
                     return false;

@@ -13,16 +13,21 @@
             input[type=image]:hover {
                 border: 2px solid purple;
             }
+            .informacion td{
+                text-align: center;
+            }
         </style>
     </head>
     <body bgcolor="#FDF5E6">
         <h1 align="center">Caja</h1>
         <form action="finalizar">
-            <table align="center" border="1" bgcolor="white">
-                <tr><th>TOTAL A PAGAR</th></tr>
-                <tr><td align="center">
-                    <fmt:formatNumber value="${carrito.importe}" type="number" maxFractionDigits="2" />
+            <table class="informacion" align="center" border="1" bgcolor="white">
+                <tr><th>INFORMACIÓN DEL PEDIDO</th></tr>
+                <tr><td>Importe total</td><td>
+                    <fmt:formatNumber value="${carrito.importe}" type="number" maxFractionDigits="2" />€
                 </td></tr>
+                <tr><td>Cuenta asociada</td><td>${carrito.propietario}</td></tr>
+                <tr><td>Número de pedido</td><td>${carrito.pedido}</td></tr>
             </table>
             <hr>
             <div align="center">
