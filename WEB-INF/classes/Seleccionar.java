@@ -10,34 +10,14 @@ public class Seleccionar extends HttpServlet{
         
         response.setContentType("text/html");
 
-        //Se obtienen la sesion y el carrito
-        HttpSession sesion=request.getSession();
-        CarritoBean carrito=(CarritoBean)sesion.getAttribute("carrito");
-
-        if(carrito==null){
-            carrito= new CarritoBean();
-            sesion.setAttribute("carrito",carrito);
-        }
+        //Se obtiene el carrito
+        CarritoBean carrito=AyudanteSesion.obtenerCarrito(request);
         
         //Se anade el cd al carrito
-        String descripcion=request.getParameter("titulo");
-        Integer cantidad=Integer.parseInt(request.getParameter("cantidad"));
-
-        //La cantidad debe ser positiva
-        if(cantidad>0){
-            //Si ya estaba se incrementa
-            if(carrito.getCds().containsKey(descripcion)){
-                Cd cd=carrito.getCds().get(descripcion);
-                cd.setCantidad(cd.getCantidad()+cantidad);
-            //Si es nuevo se anade
-            }else{
-                Cd cd = new Cd(descripcion, cantidad);
-                carrito.getCds().put(cd.getDescripcion(), cd);
-            }
-        }
+        AyudanteCarrito.anadirCarrito(carrito, request.getParameter("titulo"), 
+            Integer.parseInt(request.getParameter("cantidad")));
         
         //Se devuelve la pagina de visualizacion del carrito
         Dispatcher.dispatch(request,response, "visualizacion.jsp");
     }
-
 }

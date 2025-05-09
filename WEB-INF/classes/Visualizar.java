@@ -11,14 +11,8 @@ public class Visualizar extends HttpServlet{
         
         response.setContentType("text/html");
 
-        //Se obtienen la sesion y el carrito
-        HttpSession sesion=request.getSession();
-        CarritoBean carrito=(CarritoBean)sesion.getAttribute("carrito");
-
-        if(carrito==null){
-            carrito= new CarritoBean();
-            sesion.setAttribute("carrito",carrito);
-        }
+        //Se obtiene el carrito
+        CarritoBean carrito=AyudanteSesion.obtenerCarrito(request);
 
         //Se ejecuta una de las tres acciones posibles
         String accion=request.getServletPath();
@@ -32,7 +26,7 @@ public class Visualizar extends HttpServlet{
 
             //Accion para eliminar un cd
             case "/eliminar":
-                carrito.getCds().remove(request.getParameter("seleccion"));
+                AyudanteCarrito.eliminarCd(carrito, request.getParameter("seleccion"));
                 Dispatcher.dispatch(request,response, "visualizacion.jsp");
                 break;
 
