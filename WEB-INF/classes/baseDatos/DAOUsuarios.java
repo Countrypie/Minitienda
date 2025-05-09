@@ -13,13 +13,13 @@ public class DAOUsuarios {
     }
 
     //Metodo para anadir un nuevo usuario. Devuelve 0 si exito
-    public int nuevoUsuario(String correo, String contrasena, String tipoTarjeta, Integer numeroTarjeta) {
+    public int nuevoUsuario(String correo, String contrasena, String tipoTarjeta, String numeroTarjeta) {
         String sql = "INSERT INTO usuarios (correo, contrasena, tipo_tarjeta, numero_tarjeta) VALUES (?, ?, ?, ?)";
         try (PreparedStatement stmt = conexion.prepareStatement(sql)) {
             stmt.setString(1, correo);
             stmt.setString(2, contrasena);
             stmt.setString(3, tipoTarjeta);
-            stmt.setString(4, String.valueOf(numeroTarjeta));
+            stmt.setString(4, numeroTarjeta);
             stmt.executeUpdate();
         }catch(SQLException e){
             e.printStackTrace();
@@ -31,12 +31,14 @@ public class DAOUsuarios {
 
     //Metodo para comprobar si las credenciales estan bien
     public Boolean validar(String correo, String contrasena){
+        System.out.println("dentro");
         String sql = "SELECT * FROM usuarios WHERE correo = ?;";
         try (PreparedStatement stmt = conexion.prepareStatement(sql)) {
             stmt.setString(1, correo);
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
                     String contrasena_base=rs.getString("contrasena");
+                    System.out.printf("%s,%s\n",contrasena_base,contrasena);
                     return contrasena_base.equals(contrasena);
                 } else {
                     return false;

@@ -14,6 +14,36 @@
             input[type=image]:hover {
                 border: 2px solid purple;
             }
+            .caja_iniciar_sesion {
+                position: fixed;
+                top: calc(50% - 200px);
+                left: calc(50% - 190px);
+                background-color: #c0b398;
+                border: solid black 3px;
+                padding: 20px;
+                border-radius: 10px;
+                width: 300px;
+            }
+            .caja_iniciar_sesion h2{
+                font-size: 30px;
+                text-align: center;
+            }
+            .caja_iniciar_sesion input{
+                font-size: 20px;
+                width: 90%;
+                margin: 2px;
+            }
+            .caja_iniciar_sesion input.boton{
+                font-size: 20px;
+                margin: 5px;
+                width: auto;
+            }
+            .caja_iniciar_sesion input.boton_crear{
+                display: block;
+                font-size: 20px;
+                margin: 20px auto 5px;
+                width: auto;
+            }
         </style>
     </head>
     <body bgcolor="#FDF5E6">

@@ -1,8 +1,23 @@
-import carrito.CarritoBean;
-import carrito.Cd;
+import jakarta.servlet.*;
+import jakarta.servlet.http.*;
+
+import carrito.*;
 
 //Clase auxiliar para manejar el carrito
 public class AyudanteCarrito {
+
+    //Metodo para obtener el carrito desde la sesion. Tambien lo registra si hace falta
+    public static CarritoBean obtenerCarrito(HttpServletRequest peticion){
+        HttpSession sesion=peticion.getSession();
+        CarritoBean carrito=(CarritoBean)sesion.getAttribute("carrito");
+
+        if(carrito==null){
+            carrito= new CarritoBean();
+            sesion.setAttribute("carrito",carrito);
+        }
+
+        return carrito;
+    }
 
     //Metodo para anadir cds al carrito
     public static void anadirCarrito(CarritoBean carrito, String descripcion, Integer cantidad){

@@ -11,7 +11,7 @@ public class Seleccionar extends HttpServlet{
         response.setContentType("text/html");
 
         //Se obtiene el carrito
-        CarritoBean carrito=AyudanteSesion.obtenerCarrito(request);
+        CarritoBean carrito=AyudanteCarrito.obtenerCarrito(request);
         
         //Se anade el cd al carrito
         AyudanteCarrito.anadirCarrito(carrito, request.getParameter("titulo"), 

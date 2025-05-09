@@ -12,7 +12,7 @@ public class Visualizar extends HttpServlet{
         response.setContentType("text/html");
 
         //Se obtiene el carrito
-        CarritoBean carrito=AyudanteSesion.obtenerCarrito(request);
+        CarritoBean carrito=AyudanteCarrito.obtenerCarrito(request);
 
         //Se ejecuta una de las tres acciones posibles
         String accion=request.getServletPath();
@@ -30,16 +30,43 @@ public class Visualizar extends HttpServlet{
                 Dispatcher.dispatch(request,response, "visualizacion.jsp");
                 break;
 
-            //Accion para pagar todo el carrito
+            //Accion para pagar todo el carrito. Necesita confirmacion iniciando sesion
             case "/pagar":
-                try{
-                    ConexionBD conexion = new ConexionBD();
-                    conexion.getDAOUsuarios().nuevoUsuario("accion", "micontrasena", "visa", 69);
-                    conexion.getConecion().close();
-                }catch(Exception e){
-                    e.printStackTrace();
+                Dispatcher.dispatch(request,response, "iniciarSesion.jsp");
+                break;
+
+            //Accion para iniciar sesion e ir a la ultima pestana
+            case "/iniciar":
+                Boolean validado=AyudanteBase.validar(request.getParameter("correo"),
+                    request.getParameter("contrasena"));
+
+                //Si inicio sesion, va al fin. Si no, imprime error
+                if(validado){
+                    Dispatcher.dispatch(request,response, "fin.jsp");
+                }else{
+                    escribirError(request, "Nombre o contraseña incorrectos.");
+                    Dispatcher.dispatch(request,response, "iniciarSesion.jsp");
                 }
-                Dispatcher.dispatch(request,response, "fin.jsp");
+                break;
+
+            //Accion para ir a crear un nuevo usuario
+            case "/crear":
+                Dispatcher.dispatch(request,response, "crearUsuario.jsp");
+                break;
+
+            //Accion para pagar con un usuario recien creado
+            case "/crearYPagar":
+                int estado=AyudanteBase.crearUsuario(request.getParameter("correo"),
+                    request.getParameter("contrasena"), request.getParameter("tipo"), 
+                    request.getParameter("numero"));
+
+                //Si se creo correctamente, va al fin. Si no, imprime error 
+                if(estado==0){
+                    Dispatcher.dispatch(request,response, "fin.jsp");
+                }else{
+                    escribirError(request, "No se ha podido crear al usuario.");
+                    Dispatcher.dispatch(request,response, "crearUsuario.jsp");
+                }
                 break;
     
 
@@ -47,5 +74,10 @@ public class Visualizar extends HttpServlet{
                 System.out.println("Error al reconocer al formulario");
                 break;
         }
+    }
+
+    private void escribirError(HttpServletRequest peticion,String error){
+        HttpSession sesion=peticion.getSession();
+        sesion.setAttribute("mensajeError",error);
     }
 }

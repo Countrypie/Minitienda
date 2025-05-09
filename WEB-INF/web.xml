@@ -32,7 +32,22 @@
 
     <servlet-mapping>
         <servlet-name>visualizar</servlet-name>
+        <url-pattern>/iniciar</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>visualizar</servlet-name>
         <url-pattern>/eliminar</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>visualizar</servlet-name>
+        <url-pattern>/crear</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>visualizar</servlet-name>
+        <url-pattern>/crearYPagar</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>

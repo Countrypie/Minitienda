@@ -11,7 +11,7 @@ public class Finalizar extends HttpServlet{
         response.setContentType("text/html");
 
         //Se obtiene el carrito y se vacia
-        AyudanteCarrito.vaciar(AyudanteSesion.obtenerCarrito(request));
+        AyudanteCarrito.vaciar(AyudanteCarrito.obtenerCarrito(request));
 
         //Volver a pagina principal
         Dispatcher.dispatch(request,response, "index.html");
