@@ -37,8 +37,7 @@ public class Seleccionar extends HttpServlet{
         }
         
         //Se devuelve la pagina de visualizacion del carrito
-        RequestDispatcher rd=request.getRequestDispatcher("visualizacion.jsp");
-        rd.forward(request,response);
+        Dispatcher.dispatch(request,response, "visualizacion.jsp");
     }
 
 }

@@ -8,30 +8,37 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 
-public class conexionBD {
+public class ConexionBD {
     private java.sql.Connection conexion;
     private DAOUsuarios daoUsuarios;
     private DAOPedidos daoPedidos;
 
-    public conexionBD (){
+    public ConexionBD (){
 
         try {
 
+            Class.forName("org.postgresql.Driver").newInstance();
+
             String url = "jdbc:postgresql://localhost:5432/Minitienda";
-            this.conexion=java.sql.DriverManager.getConnection(url, usuario, contrasena);
+            this.conexion=java.sql.DriverManager.getConnection(url, "acceso", "acceso");
 
-            daoUsuarios = new DAOUsuarios(conexion);
-            daoPedidos = new DAOPedidos(conexion);
+            this.daoUsuarios = new DAOUsuarios(conexion);
+            this.daoPedidos = new DAOPedidos(conexion);
 
-        } catch (IOException i){
-            System.out.println(i.getMessage());
-        } 
-        catch (java.sql.SQLException e){
+        }catch (Exception e){
             System.out.println(e.getMessage());
         }
     }
 
     public java.sql.Connection getConecion(){
         return this.conexion;
+    }
+
+    public DAOUsuarios getDAOUsuarios(){
+        return this.daoUsuarios;
+    }
+
+    public DAOPedidos getDAOPedidos(){
+        return this.daoPedidos;
     }
 }

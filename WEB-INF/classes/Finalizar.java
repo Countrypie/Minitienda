@@ -25,8 +25,7 @@ public class Finalizar extends HttpServlet{
         }
 
         //Volver a pagina principal
-        RequestDispatcher rd=request.getRequestDispatcher("index.html");
-        rd.forward(request,response);
+        Dispatcher.dispatch(request,response, "index.html");
     }
 
 }

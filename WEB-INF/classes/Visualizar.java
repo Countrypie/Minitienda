@@ -1,5 +1,6 @@
 import java.io.*;
 
+import baseDatos.ConexionBD;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 
@@ -26,21 +27,25 @@ public class Visualizar extends HttpServlet{
 
             //Accion para volver a la pagina inicial
             case "/volver":
-                rd=request.getRequestDispatcher("index.html");
-                rd.forward(request,response);
+                Dispatcher.dispatch(request,response, "index.html");
                 break;
 
             //Accion para eliminar un cd
             case "/eliminar":
                 carrito.getCds().remove(request.getParameter("seleccion"));
-                rd=request.getRequestDispatcher("visualizacion.jsp");
-                rd.forward(request,response);
+                Dispatcher.dispatch(request,response, "visualizacion.jsp");
                 break;
 
             //Accion para pagar todo el carrito
             case "/pagar":
-                rd=request.getRequestDispatcher("fin.jsp");
-                rd.forward(request,response);
+                try{
+                    ConexionBD conexion = new ConexionBD();
+                    conexion.getDAOUsuarios().nuevoUsuario("accion", "micontrasena", "visa", 69);
+                    conexion.getConecion().close();
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+                Dispatcher.dispatch(request,response, "fin.jsp");
                 break;
     
 
