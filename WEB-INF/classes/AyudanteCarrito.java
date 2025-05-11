@@ -7,7 +7,7 @@ import carrito.*;
 public class AyudanteCarrito {
 
     //Metodo para obtener el carrito desde la sesion. Tambien lo registra si hace falta
-    public static CarritoBean obtenerCarrito(HttpServletRequest peticion){
+    public CarritoBean obtenerCarrito(HttpServletRequest peticion){
         HttpSession sesion=peticion.getSession();
         CarritoBean carrito=(CarritoBean)sesion.getAttribute("carrito");
 
@@ -20,7 +20,12 @@ public class AyudanteCarrito {
     }
 
     //Metodo para anadir cds al carrito
-    public static void anadirCarrito(CarritoBean carrito, String descripcion, Integer cantidad){
+    public void anadirCarrito(HttpServletRequest request){
+
+        CarritoBean carrito=this.obtenerCarrito(request);
+        String descripcion=request.getParameter("titulo");
+        Integer cantidad=Integer.parseInt(request.getParameter("cantidad"));
+
         //La cantidad debe ser positiva
         if(cantidad>0){
             //Si ya estaba se incrementa
@@ -36,12 +41,14 @@ public class AyudanteCarrito {
     }
 
     //Metodo para borrar un cd del carrito
-    public static void eliminarCd(CarritoBean carrito, String cd){
+    public void eliminarCd(HttpServletRequest request){
+        CarritoBean carrito=this.obtenerCarrito(request);
+        String cd= request.getParameter("seleccion");
         carrito.getCds().remove(cd);
     }
 
     //Metodo para vaciar todo el contenido del carrito
-    public static void vaciar(CarritoBean carrito){
-        carrito.getCds().clear();
+    public void vaciar(HttpServletRequest request){
+        this.obtenerCarrito(request).getCds().clear();
     }
 }

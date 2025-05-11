@@ -10,6 +10,11 @@
     </servlet>
 
     <servlet>
+        <servlet-name>iniciar</servlet-name>
+        <servlet-class>IniciarSesion</servlet-class>
+    </servlet>
+
+    <servlet>
         <servlet-name>finalizar</servlet-name>
         <servlet-class>Finalizar</servlet-class>
     </servlet>
@@ -32,21 +37,21 @@
 
     <servlet-mapping>
         <servlet-name>visualizar</servlet-name>
-        <url-pattern>/iniciar</url-pattern>
-    </servlet-mapping>
-
-    <servlet-mapping>
-        <servlet-name>visualizar</servlet-name>
         <url-pattern>/eliminar</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
-        <servlet-name>visualizar</servlet-name>
+        <servlet-name>iniciar</servlet-name>
+        <url-pattern>/iniciar</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>iniciar</servlet-name>
         <url-pattern>/crear</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
-        <servlet-name>visualizar</servlet-name>
+        <servlet-name>iniciar</servlet-name>
         <url-pattern>/crearYPagar</url-pattern>
     </servlet-mapping>
 

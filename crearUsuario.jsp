@@ -7,7 +7,7 @@
         <input type="email" name="correo" placeholder="Correo electrónico" required>
         <input type="password" name="contrasena" placeholder="Contraseña" required>
         <input type="text" name="tipo" placeholder="Tipo de tarjeta" required>
-        <input type="text" name="numero" placeholder="Número de tarjeta" required>
+        <input type="text" name="numero" placeholder="Número de tarjeta" required pattern="\d+">
         <input type="submit" value="Entrar" class="boton">
     </form>
     <c:if test="${not empty mensajeError}">

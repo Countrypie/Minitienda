@@ -10,9 +10,13 @@ import carrito.CarritoBean;
 public class AyudanteBase {
 
     //Metodo para crear un usuario. Devuelve 0 si hubo exito, 1 si fracaso
-    public static int crearUsuario(String correo, String contrasena, String tipo, String numero){
+    public int crearUsuario(HttpServletRequest request){
 
         int retorno=-1;
+        String correo=request.getParameter("correo"),
+               contrasena=request.getParameter("contrasena"), 
+               tipo=request.getParameter("tipo"), 
+               numero=request.getParameter("numero");
 
         try{
             ConexionBD conexion = new ConexionBD();
@@ -26,7 +30,7 @@ public class AyudanteBase {
     }
 
     //Metodo para comprobar si las credenciales son correctas.
-    public static Boolean validar(String correo, String contrasena){
+    public Boolean validar(String correo, String contrasena){
 
         Boolean retorno=false;
 
@@ -42,12 +46,11 @@ public class AyudanteBase {
     }
 
     //Metodo para crear un nuevo pedido
-    public static void crearPedido(HttpServletRequest request){
+    public void crearPedido(HttpServletRequest request, CarritoBean carrito){
 
-        CarritoBean carrito=AyudanteCarrito.obtenerCarrito(request);
+        AyudanteCarrito ayuda=new AyudanteCarrito();
+
         carrito.setPropietario(request.getParameter("correo"));
-        System.out.println(request.getParameter("correo"));
-        System.out.println(carrito.getImporte());
         
         int id=-1;
         try{
