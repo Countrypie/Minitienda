@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <jsp:useBean id="carrito" class="carrito.CarritoBean" scope="session"/>
@@ -16,24 +17,68 @@
             .informacion td{
                 text-align: center;
             }
+            .caja_confirmacion {
+                position: fixed;
+                top: calc(50% - 230px);
+                left: calc(50% - 170px);
+                background-color: #c0b398;
+                border: solid black 3px;
+                padding: 20px;
+                border-radius: 10px;
+                width: 300px;
+            }
+            .caja_confirmacion h2{
+                font-size: 30px;
+                text-align: center;
+            }
+            input[type="submit"]{
+                display: block;
+                font-size: 20px;
+                margin: 20px auto 5px;
+                width: auto;
+            }
         </style>
     </head>
     <body bgcolor="#FDF5E6">
         <h1 align="center">Caja</h1>
-        <form action="finalizar">
+        <form>
             <table class="informacion" align="center" border="1" bgcolor="white">
-                <tr><th>INFORMACIÓN DEL PEDIDO</th></tr>
-                <tr><td>Importe total</td><td>
-                    <fmt:formatNumber value="${carrito.importe}" type="number" maxFractionDigits="2" />€
-                </td></tr>
-                <tr><td>Cuenta asociada</td><td>${carrito.propietario}</td></tr>
-                <tr><td>Número de pedido</td><td>${carrito.pedido}</td></tr>
+                <tr><th>Total a pagar</th></tr>
+                <tr><td><fmt:formatNumber value="${carrito.importe}" type="number" maxFractionDigits="2" />€</td></tr>
             </table>
             <hr>
             <div align="center">
-                <input type="image" name="pagar" src="./Imagenes/partitura.png" width="200px" alt="Pagar y volver a la página principal">
-                <br>Pagar y volver a la página principal
+                <input type="image" name="pagar" src="./Imagenes/partitura.png" width="200px" alt="Pagar la selección">
+                <br>Pagar la selección
             </div>
         </form>
+        
+        <div class="caja_confirmacion">        
+          <h2>Confirmación de la compra</h2>
+          <c:choose>
+            <c:when test="${carrito.pedido == -1}">
+                <div style="color: red; text-align: center; margin-bottom: 10px;">
+                    No se ha podido realizar el pedido, inténtelo de nuevo más tarde.
+                </div>
+                <c:remove var="mensajeError"/>
+            </c:when>
+            <c:otherwise>
+                <table class="informacion" align="center" border="1" bgcolor="white">
+                    <tr><th>INFORMACIÓN DEL PEDIDO</th></tr>
+                  <tr><td>Importe total</td><td>
+                      <fmt:formatNumber value="${carrito.importe}" type="number" maxFractionDigits="2" />€
+                  </td></tr>
+                  <tr><td>Cuenta asociada</td><td>${carrito.propietario}</td></tr>
+                  <tr><td>Número de pedido</td><td>${carrito.pedido}</td></tr>
+              </table>
+            </c:otherwise>
+          </c:choose>
+          
+          <form action="acabar">
+            <div align="center">
+                <input type="submit" value="Volver a la página principal" alt="Volver a la página principal">
+            </div>
+          </form>
+      </div>
     </body>
 </html>

@@ -3,19 +3,21 @@ package carrito;
 import java.io.Serializable;
 import java.util.*;
 
-
+//Clase para almacenar propiedades
 public class CarritoBean implements Serializable{
 
-    private HashMap<String, Cd> cds;
-    String propietario;
-    Integer pedido;
+    private HashMap<String, Cd> cds;    //Lista de cds en el carrito
+    String propietario;                 //Propietario del carrito
+    Integer pedido;                     //Identificador de la compra
 
+    //Constructor
     public CarritoBean(){
         cds= new HashMap<String, Cd>();
         propietario=null;
         pedido=null;
     }
 
+    //Getters y setters
     public HashMap<String, Cd> getCds(){
         return this.cds;
     }

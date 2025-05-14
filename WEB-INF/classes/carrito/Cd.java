@@ -3,18 +3,21 @@ package carrito;
 import java.util.Objects;
 import java.util.StringTokenizer;
 
+//Objeto que almacena información
 public class Cd{
 
-    private String descripcion;
-    private Float precio;
-    private Integer cantidad;
+    private String descripcion;     //Texto que describe al cd
+    private Float precio;           //Precio individual de cada cd
+    private Integer cantidad;       //Número de cds agrupados en este objeto
 
+    //Constructor
     public Cd(){
         this.descripcion =null;
         this.precio =null;
         this.cantidad =null;
     }
 
+    //Constructor
     public Cd(String descripcion, Integer cantidad){
 
         this.descripcion =descripcion;

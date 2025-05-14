@@ -32,7 +32,7 @@
 
     <servlet-mapping>
         <servlet-name>visualizar</servlet-name>
-        <url-pattern>/pagar</url-pattern>
+        <url-pattern>/irConfirmar</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
@@ -57,7 +57,12 @@
 
     <servlet-mapping>
         <servlet-name>finalizar</servlet-name>
-        <url-pattern>/finalizar</url-pattern>
+        <url-pattern>/pagar</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>finalizar</servlet-name>
+        <url-pattern>/acabar</url-pattern>
     </servlet-mapping>
 
     <session-config>

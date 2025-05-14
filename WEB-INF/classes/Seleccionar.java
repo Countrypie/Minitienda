@@ -5,6 +5,7 @@ import jakarta.servlet.http.*;
 
 import carrito.*;
 
+//Servlet que controla como anadir el cd seleccionado al carrito
 public class Seleccionar extends HttpServlet{
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         
@@ -16,7 +17,7 @@ public class Seleccionar extends HttpServlet{
         //Se anade el cd al carrito
         ayuda.anadirCarrito(request);
         
-        //Se devuelve la pagina de visualizacion del carrito
+        //Se reenvia a la pagina de visualizacion del carrito
         Dispatcher.dispatch(request,response, "visualizacion.jsp");
     }
 }

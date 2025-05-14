@@ -5,47 +5,53 @@ import jakarta.servlet.http.*;
 
 import carrito.*;
 
+//Servlet que controla los formularios de iniciar sesion y crear un nuevo usuario
 public class IniciarSesion extends HttpServlet{
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         
         response.setContentType("text/html");
 
-        //Se obtiene el ayudante
-        AyudanteBase ayuda=new AyudanteBase();
+        //Se obtienen los ayudantes y el carrito
+        AyudanteBase ayudaB=new AyudanteBase();
+        AyudanteCarrito ayudaC=new AyudanteCarrito();
+        CarritoBean carrito=ayudaC.obtenerCarrito(request);
 
-        //Se ejecuta una de las tres acciones posibles
+        //Se detecta la accion pedida
         String accion=request.getServletPath();
-        RequestDispatcher rd;
         switch(accion){
 
-            //Accion para iniciar sesion e ir a la ultima pestana
+            //Accion para validar el inicio de sesion
             case "/iniciar":
-                Boolean validado=ayuda.validar(request.getParameter("correo"),
+                //Se comprueba si las credenciales son correctas
+                Boolean validado=ayudaB.validar(request.getParameter("correo"),
                     request.getParameter("contrasena"));
 
-                //Si inicio sesion, va al fin. Si no, imprime error
+                //Si son correctas, se confirmo y va a la caja
                 if(validado){
-                    ayuda.crearPedido(request, new AyudanteCarrito().obtenerCarrito(request));
-                    Dispatcher.dispatch(request,response, "fin.jsp");
+                    carrito.setPropietario(request.getParameter("correo"));
+                    Dispatcher.dispatch(request,response, "caja.jsp");
+
+                //Si son incorrectas aparece un mensaje de error
                 }else{
                     escribirError(request, "Nombre o contraseña incorrectos.");
                     Dispatcher.dispatch(request,response, "iniciarSesion.jsp");
                 }
                 break;
 
-            //Accion para ir a crear un nuevo usuario
+            //Accion para abrir la pestana donde se crea un nuevo usuario
             case "/crear":
                 Dispatcher.dispatch(request,response, "crearUsuario.jsp");
                 break;
 
-            //Accion para pagar con un usuario recien creado, y va a la ultima pestaña
+            //Accion para crear un usuario e ir a caja
             case "/crearYPagar":
-                int estado=ayuda.crearUsuario(request);
+                //Se crea el usuario y se ve si tuvo exito
+                int estado=ayudaB.crearUsuario(request);
 
-                //Si se creo correctamente, va al fin. Si no, imprime error 
+                //Si se creo correctamente, va a la caja. Si no, aparece un error 
                 if(estado==0){
-                    ayuda.crearPedido(request, new AyudanteCarrito().obtenerCarrito(request));
-                    Dispatcher.dispatch(request,response, "fin.jsp");
+                    carrito.setPropietario(request.getParameter("correo"));
+                    Dispatcher.dispatch(request,response, "caja.jsp");
                 }else{
                     escribirError(request, "No se ha podido crear al usuario.");
                     Dispatcher.dispatch(request,response, "crearUsuario.jsp");

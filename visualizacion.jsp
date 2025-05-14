@@ -88,7 +88,7 @@
                     </form>
                 </td>
                 <td>
-                    <form action="pagar">
+                    <form action="irConfirmar">
                         <input type="image" src="./Imagenes/caja.png" alt="Me largo a pagar" width="200px"><br>
                     </form>
                 </td>
