@@ -60,11 +60,6 @@
         <url-pattern>/pagar</url-pattern>
     </servlet-mapping>
 
-    <servlet-mapping>
-        <servlet-name>finalizar</servlet-name>
-        <url-pattern>/acabar</url-pattern>
-    </servlet-mapping>
-
     <session-config>
         <session-timeout>15</session-timeout>
     </session-config>

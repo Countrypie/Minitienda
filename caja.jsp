@@ -16,6 +16,26 @@
             .informacion td{
                 text-align: center;
             }
+            .caja_confirmacion {
+                position: fixed;
+                top: calc(50% - 250px);
+                left: calc(50% - 170px);
+                background-color: #c0b398;
+                border: solid black 3px;
+                padding: 20px;
+                border-radius: 10px;
+                width: 300px;
+            }
+            .caja_confirmacion h2{
+                font-size: 30px;
+                text-align: center;
+            }
+            input[type="submit"]{
+                display: block;
+                font-size: 20px;
+                margin: 20px auto 5px;
+                width: auto;
+            }
         </style>
     </head>
     <body bgcolor="#FDF5E6">

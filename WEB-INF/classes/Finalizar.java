@@ -15,28 +15,16 @@ public class Finalizar extends HttpServlet{
         AyudanteCarrito ayudaC=new AyudanteCarrito(request);
         AyudanteBase ayudaB=new AyudanteBase(request);
 
-        //Se detecta la solicitud
-        String accion=request.getServletPath();
-        switch(accion){
-
-            //Si se pago el pedido, se guarda en la BD y va a la pagina final
-            case "/pagar":
-
-                ayudaB.crearPedido(ayudaC.obtenerCarrito());
-                Dispatcher.dispatch(request,response,"fin.jsp");
-                break;
-
-            //Si tras ver el ticket pulso en acabar, vuelve a la pagina principal
-            case "/acabar":
-                ayudaC.vaciar();
-                Dispatcher.dispatch(request,response,"index.html");
-                break;
-    
-
-            default:
-                System.out.println("Error al reconocer al formulario");
-                break;
-        }
+        //Se crea el pedido
+        ayudaB.crearPedido(ayudaC.obtenerCarrito());
+        //Se guarda el importe
+        HttpSession session=request.getSession();
+        session.setAttribute("importe",ayudaC.obtenerCarrito().getImporte());
+        //Se vacia el carrito
+        ayudaC.vaciar();
+        //Se va a la pagina con el ticket
+        Dispatcher.dispatch(request,response,"fin.jsp");
+            
     }
 
 }

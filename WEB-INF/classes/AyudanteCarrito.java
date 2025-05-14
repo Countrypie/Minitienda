@@ -1,6 +1,8 @@
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 
+import java.util.HashMap;
+
 import carrito.*;
 
 //Clase auxiliar para manejar el carrito
@@ -59,6 +61,7 @@ public class AyudanteCarrito {
 
     //Metodo para vaciar todo el contenido del carrito
     public void vaciar(){
-        this.obtenerCarrito().getCds().clear();
+        CarritoBean carrito=this.obtenerCarrito();
+        carrito.setCds(new HashMap<>());
     }
 }
