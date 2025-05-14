@@ -12,8 +12,8 @@ public class Finalizar extends HttpServlet{
         response.setContentType("text/html");
 
         //Se obtienen los ayudantes
-        AyudanteCarrito ayudaC=new AyudanteCarrito();
-        AyudanteBase ayudaB=new AyudanteBase();
+        AyudanteCarrito ayudaC=new AyudanteCarrito(request);
+        AyudanteBase ayudaB=new AyudanteBase(request);
 
         //Se detecta la solicitud
         String accion=request.getServletPath();
@@ -22,13 +22,13 @@ public class Finalizar extends HttpServlet{
             //Si se pago el pedido, se guarda en la BD y va a la pagina final
             case "/pagar":
 
-                ayudaB.crearPedido(ayudaC.obtenerCarrito(request));
+                ayudaB.crearPedido(ayudaC.obtenerCarrito());
                 Dispatcher.dispatch(request,response,"fin.jsp");
                 break;
 
             //Si tras ver el ticket pulso en acabar, vuelve a la pagina principal
             case "/acabar":
-
+                ayudaC.vaciar();
                 Dispatcher.dispatch(request,response,"index.html");
                 break;
     

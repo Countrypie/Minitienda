@@ -12,7 +12,7 @@ public class Visualizar extends HttpServlet{
         response.setContentType("text/html");
 
         //Se obtiene el ayudante
-        AyudanteCarrito ayuda=new AyudanteCarrito();
+        AyudanteCarrito ayuda=new AyudanteCarrito(request);
 
         //Se edetecta la accion pedida
         String accion=request.getServletPath();
@@ -25,7 +25,7 @@ public class Visualizar extends HttpServlet{
 
             //Accion para eliminar un cd del carrito
             case "/eliminar":
-                ayuda.eliminarCd(request);
+                ayuda.eliminarCd();
                 Dispatcher.dispatch(request,response, "visualizacion.jsp");
                 break;
 

@@ -12,9 +12,9 @@ public class IniciarSesion extends HttpServlet{
         response.setContentType("text/html");
 
         //Se obtienen los ayudantes y el carrito
-        AyudanteBase ayudaB=new AyudanteBase();
-        AyudanteCarrito ayudaC=new AyudanteCarrito();
-        CarritoBean carrito=ayudaC.obtenerCarrito(request);
+        AyudanteBase ayudaB=new AyudanteBase(request);
+        AyudanteCarrito ayudaC=new AyudanteCarrito(request);
+        CarritoBean carrito=ayudaC.obtenerCarrito();
 
         //Se detecta la accion pedida
         String accion=request.getServletPath();
@@ -46,7 +46,7 @@ public class IniciarSesion extends HttpServlet{
             //Accion para crear un usuario e ir a caja
             case "/crearYPagar":
                 //Se crea el usuario y se ve si tuvo exito
-                int estado=ayudaB.crearUsuario(request);
+                int estado=ayudaB.crearUsuario();
 
                 //Si se creo correctamente, va a la caja. Si no, aparece un error 
                 if(estado==0){

@@ -9,8 +9,15 @@ import carrito.CarritoBean;
 //Clase auxiliar para manejar el acceso a la base
 public class AyudanteBase {
 
+    HttpServletRequest request=null;
+
+    //Constructor
+    public AyudanteBase(HttpServletRequest request){
+        this.request=request;
+    }
+
     //Metodo para crear un usuario. Devuelve 0 si hubo exito, +-1 si fracaso
-    public int crearUsuario(HttpServletRequest request){
+    public int crearUsuario(){
 
         //Se obtienen los valores del request
         int retorno=-1;

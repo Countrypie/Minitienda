@@ -12,10 +12,10 @@ public class Seleccionar extends HttpServlet{
         response.setContentType("text/html");
 
         //Se obtiene el ayudante
-        AyudanteCarrito ayuda=new AyudanteCarrito();
+        AyudanteCarrito ayuda=new AyudanteCarrito(request);
         
         //Se anade el cd al carrito
-        ayuda.anadirCarrito(request);
+        ayuda.anadirCarrito();
         
         //Se reenvia a la pagina de visualizacion del carrito
         Dispatcher.dispatch(request,response, "visualizacion.jsp");
