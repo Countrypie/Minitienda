@@ -15,13 +15,13 @@ public class DAOUsuarios {
     }
 
     //Metodo para anadir un nuevo usuario. Devuelve 0 si exito
-    public int nuevoUsuario(String correo, String contrasena, String tipoTarjeta, String numeroTarjeta) {
+    public int nuevoUsuario(String correo, String nombre, String tipoTarjeta, String numeroTarjeta) {
         
         //Se prepara la transacción y se ejecuta
-        String sql = "INSERT INTO usuarios (correo, contrasena, tipo_tarjeta, numero_tarjeta) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO usuarios (correo, nombre, tipo_tarjeta, numero_tarjeta) VALUES (?, ?, ?, ?)";
         try (PreparedStatement stmt = conexion.prepareStatement(sql)) {
             stmt.setString(1, correo);
-            stmt.setString(2, contrasena);
+            stmt.setString(2, nombre);
             stmt.setString(3, tipoTarjeta);
             stmt.setString(4, numeroTarjeta);
             stmt.executeUpdate();
