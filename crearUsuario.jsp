@@ -5,7 +5,7 @@
     <h2>Crear Usuario</h2>
     <form action="crearYPagar" method="get">
         <input type="email" name="correo" placeholder="Correo electrónico" required>
-        <input type="password" name="contrasena" placeholder="Contraseña" required>
+        <input type="text" name="nombre" placeholder="Nombre de usuario" required>
         <input type="text" name="tipo" placeholder="Tipo de tarjeta" required>
         <input type="text" name="numero" placeholder="Número de tarjeta" required pattern="\d+">
         <input type="submit" value="Entrar" class="boton">

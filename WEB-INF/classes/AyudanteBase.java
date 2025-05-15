@@ -22,7 +22,7 @@ public class AyudanteBase {
         //Se obtienen los valores del request
         int retorno=-1;
         String correo=request.getParameter("correo"),
-               contrasena=request.getParameter("contrasena"), 
+               contrasena=request.getParameter("nombre"), 
                tipo=request.getParameter("tipo"), 
                numero=request.getParameter("numero");
 
