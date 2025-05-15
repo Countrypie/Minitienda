@@ -7,8 +7,8 @@ import java.util.*;
 public class CarritoBean implements Serializable{
 
     private HashMap<String, Cd> cds;    //Lista de cds en el carrito
-    String propietario;                 //Propietario del carrito
-    Integer pedido;                     //Identificador de la compra
+    private String propietario;                 //Propietario del carrito
+    private Integer pedido;                     //Identificador de la compra
 
     //Constructor
     public CarritoBean(){

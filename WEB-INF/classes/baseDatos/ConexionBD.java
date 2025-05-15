@@ -29,7 +29,7 @@ public class ConexionBD {
     }
 
     //Getters
-    public java.sql.Connection getConecion(){
+    public java.sql.Connection getConexion(){
         return this.conexion;
     }
 
