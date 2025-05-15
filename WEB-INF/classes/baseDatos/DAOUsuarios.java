@@ -37,7 +37,7 @@ public class DAOUsuarios {
 
 
     //Metodo para comprobar si las credenciales estan bien
-    public Boolean validar(String correo, String contrasena){
+    public Boolean validar(String correo, String contrasena, String tipoTarjeta, String numeroTarjeta){
 
         //Se prepara la transacción
         String sql = "SELECT * FROM usuarios WHERE correo = ?;";
@@ -47,7 +47,10 @@ public class DAOUsuarios {
                 if (rs.next()) {
                     //Se obtiene la contraseña y se comprueba si coincide con lo introducido
                     String contrasena_base=rs.getString("contrasena");
-                    return contrasena_base.equals(contrasena);
+                    String tipoTarjeta_base=rs.getString("tipo_tarjeta");
+                    String numeroTarjeta_base=rs.getString("numero_tarjeta");
+                    
+                    return contrasena_base.equals(contrasena) && tipoTarjeta_base.equals(tipoTarjeta) && numeroTarjeta_base.equals(numeroTarjeta);
                 } else {
                     return false;
                 }

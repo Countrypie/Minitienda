@@ -39,13 +39,13 @@ public class AyudanteBase {
     }
 
     //Metodo para comprobar si las credenciales son correctas.
-    public Boolean validar(String correo, String contrasena){
+    public Boolean validar(String correo, String contrasena, String tipo, String numero){
 
         Boolean retorno=false;
         //Se llama al DAO de usuarios para que valide
         try{
             ConexionBD conexion = new ConexionBD();
-            retorno=conexion.getDAOUsuarios().validar(correo, contrasena);
+            retorno=conexion.getDAOUsuarios().validar(correo, contrasena, tipo, numero);
             conexion.getConecion().close();
         }catch(Exception e){
             e.printStackTrace();

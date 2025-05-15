@@ -5,7 +5,9 @@
     <h2>Iniciar sesión</h2>
     <form action="iniciar" method="get">
         <input type="email" name="correo" placeholder="Correo electrónico" required>
-        <input type="password" name="contrasena" placeholder="Contraseña" required>
+        <input type="text" name="nombre" placeholder="Nombre de usuario" required>
+        <input type="text" name="tipo" placeholder="Tipo de tarjeta de crédito" required>
+        <input type="text" name="numero" placeholder="Número de tarjeta de crédito" required>
         <input type="submit" value="Entrar" class="boton">
     </form>
     <form action="crear" method="get">

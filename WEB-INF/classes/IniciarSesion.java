@@ -24,7 +24,8 @@ public class IniciarSesion extends HttpServlet{
             case "/iniciar":
                 //Se comprueba si las credenciales son correctas
                 Boolean validado=ayudaB.validar(request.getParameter("correo"),
-                    request.getParameter("contrasena"));
+                    request.getParameter("nombre"), request.getParameter("tipo"),
+                    request.getParameter("numero"));
 
                 //Si son correctas, se confirmo y va a la caja
                 if(validado){
