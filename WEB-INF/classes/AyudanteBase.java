@@ -22,15 +22,15 @@ public class AyudanteBase {
         //Se obtienen los valores del request
         int retorno=-1;
         String correo=request.getParameter("correo"),
-               contrasena=request.getParameter("nombre"), 
+               nombre=request.getParameter("nombre"), 
                tipo=request.getParameter("tipo"), 
                numero=request.getParameter("numero");
 
         //Se llama al DAO de Usuarios para crear un nuevo usuario
         try{
             ConexionBD conexion = new ConexionBD();
-            retorno=conexion.getDAOUsuarios().nuevoUsuario(correo, contrasena, tipo, numero);
-            conexion.getConecion().close();
+            retorno=conexion.getDAOUsuarios().nuevoUsuario(correo, nombre, tipo, numero);
+            conexion.getConexion().close();
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -46,7 +46,7 @@ public class AyudanteBase {
         try{
             ConexionBD conexion = new ConexionBD();
             retorno=conexion.getDAOUsuarios().validar(correo, contrasena, tipo, numero);
-            conexion.getConecion().close();
+            conexion.getConexion().close();
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -62,7 +62,7 @@ public class AyudanteBase {
         try{
             ConexionBD conexion = new ConexionBD();
             id=conexion.getDAOPedidos().insertarPedido(carrito.getPropietario(), carrito.getImporte());
-            conexion.getConecion().close();
+            conexion.getConexion().close();
         }catch(Exception e){
             e.printStackTrace();
         }
